@@ -4,6 +4,11 @@ pipeline{
         maven 'maven'
     }
     stages{
+        stage('checkout'){
+            steps{
+                git url:'https://github.com/nitish-002/jenkhii.git',branch:'main'
+            }
+        }
         stage('Build'){
             steps{
             sh 'mvn clean package'
@@ -12,6 +17,14 @@ pipeline{
         stage('Test'){
             steps{
             sh 'mvn test'
+            }
+        }
+        stage('Run JAR'){
+            steps{
+                script{
+                    def output=sh(script:'java -jar target/simple-java-project-1.0-SNAPSHOT.jar').trim()
+                    echo "Output ${output}"
+                }
             }
         }
     }
