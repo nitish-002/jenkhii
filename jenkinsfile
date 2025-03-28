@@ -22,7 +22,7 @@ pipeline{
         stage('Run JAR'){
             steps{
                 script{
-                    def output=sh(script:'java -jar target/simple-java-project-1.0-SNAPSHOT.jar').trim()
+                    def output=sh(script:'java -jar target/simple-java-project-1.0-SNAPSHOT.jar')
                     echo "Output ${output}"
                 }
             }
